@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>easily customizable accordion</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=divice-width, initial-scale=1.0">
+	<style>
+		.accordion,
+		.accordion__header {
+			border: 1px dashed black;
+		}
+
+		.accordion__header {
+			padding: 20px;
+			cursor: pointer;
+			position: relative;
+			background: #83eb34;
+		}
+
+		.accordion__header::before {
+			content: "";
+			width: 0;
+			height: 0;
+			border-left: 12px solid transparent;
+			border-right: 12px solid transparent;
+			border-top: 20px solid #ffb300;
+			position: absolute;
+			right: 20px;
+			top: 50%;
+			transform: translateY(-50%);
+			transition: transform 0.3s ease;
+		}
+
+		.accordion__item.active .accordion__header::before {
+			transform: translateY(-50%) rotate(180deg);
+		}
+
+		.accordion__body-inner {
+			padding: 20px;
+			background: #34eb8c;
+		}
+
+		.accordion__body {
+			overflow: hidden;
+			transition: height 0.3s ease;
+		}
+	</style>
+</head>
+<body>
+
+<!-- ACCORDION :: START -->
+<div class="accordion">
+	<div class="accordion__item">
+		<div class="accordion__header">
+			Header 1
+		</div>
+		<div class="accordion__body">
+			<div class="accordion__body-inner">
+				Content 1
+			</div>
+		</div>
+	</div>
+	<div class="accordion__item">
+		<div class="accordion__header">
+			Header 2
+		</div>
+		<div class="accordion__body">
+			<div class="accordion__body-inner">
+				Content 2
+			</div>
+		</div>
+	</div>
+	<div class="accordion__item">
+		<div class="accordion__header">
+			Header 3
+		</div>
+		<div class="accordion__body">
+			<div class="accordion__body-inner">
+				Content 3
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ACCORDION :: END -->
+
+<script src="js/template.js"></script>
+</body>
+</html>
