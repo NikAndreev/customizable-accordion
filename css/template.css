@@ -1,0 +1,39 @@
+.accordion,
+.accordion__header {
+	border: 1px dashed black;
+}
+
+.accordion__header {
+	padding: 20px;
+	cursor: pointer;
+	position: relative;
+	background: #83eb34;
+}
+
+.accordion__header::before {
+	content: "";
+	width: 0;
+	height: 0;
+	border-left: 12px solid transparent;
+	border-right: 12px solid transparent;
+	border-top: 20px solid #ffb300;
+	position: absolute;
+	right: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	transition: transform 0.3s ease;
+}
+
+.accordion__body {
+	overflow: hidden;
+	transition: height 0.3s ease;
+}
+
+.accordion__body-inner {
+	padding: 20px;
+	background: #34eb8c;
+}
+
+.accordion__item.active .accordion__header::before {
+	transform: translateY(-50%) rotate(180deg);
+}
