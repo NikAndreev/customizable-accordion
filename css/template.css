@@ -1,3 +1,7 @@
+.accordion {
+	font-family: 'Roboto', sans-serif;
+}
+
 .accordion,
 .accordion__header {
 	border: 1px dashed black;
