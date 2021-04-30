@@ -1,20 +1,20 @@
 document.addEventListener("DOMContentLoaded", function(){
 
-	let accordionsGroup = document.querySelectorAll(".accordion");
+	let accordionGroup = document.querySelectorAll(".js-accordion");
 
-	accordionsGroup.forEach( accordion => {
+	accordionGroup.forEach( accordion => {
 
-		let accordionItemsGroup = accordion.querySelectorAll(".accordion__item");
-		let accordionHeadersGroup = accordion.querySelectorAll(".accordion__header");
+		let accordionItemGroup = accordion.querySelectorAll(".js-accordion-item");
+		let accordionHeaderGroup = accordion.querySelectorAll(".js-accordion-header");
 
-		accordionItemsGroup.forEach( accordionItem => {
+		accordionItemGroup.forEach( accordionItem => {
 			switchItemBody(accordionItem);
 		});
 
-		accordionHeadersGroup.forEach( accordionHeader => {
+		accordionHeaderGroup.forEach( accordionHeader => {
 			accordionHeader.addEventListener("click", event => {
 
-				accordionItemsGroup.forEach( accordionItem => {
+				accordionItemGroup.forEach( accordionItem => {
 					if (accordionItem.contains(event.target)) {
 						accordionItem.classList.toggle("active");
 					} else {
@@ -28,10 +28,11 @@ document.addEventListener("DOMContentLoaded", function(){
 		});
 
 		function switchItemBody(accordionItem) {
+			let accordionBody = accordionItem.querySelector(".js-accordion-body");
 			if (accordionItem.classList.contains("active")) {
-				accordionItem.lastElementChild.style.height = accordionItem.lastElementChild.scrollHeight + "px";
+				accordionBody.style.height = accordionBody.scrollHeight + "px";
 			} else {
-				accordionItem.lastElementChild.style.height = "0px";
+				accordionBody.style.height = "0px";
 			}
 		}
 
