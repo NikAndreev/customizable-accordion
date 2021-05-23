@@ -2,10 +2,13 @@ document.addEventListener("DOMContentLoaded", function(){
 
 	let accordionGroup = document.querySelectorAll(".js-accordion");
 
-	accordionGroup.forEach( accordion => {
+	accordionGroup.forEach( function(accordion) {
 
 		let accordionItemGroup = accordion.querySelectorAll(".js-accordion-item");
 		let accordionHeaderGroup = accordion.querySelectorAll(".js-accordion-header");
+
+		let accordionItemFirst = accordionItemGroup[0];
+		accordionItemFirst.classList.add("active");
 
 		accordionItemGroup.forEach( accordionItem => {
 			switchItemBody(accordionItem);
@@ -15,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function(){
 			accordionHeader.addEventListener("click", event => {
 
 				accordionItemGroup.forEach( accordionItem => {
-					if (accordionItem.contains(event.target)) {
+					if (accordionItem.contains(event.currentTarget)) {
 						accordionItem.classList.toggle("active");
 					} else {
 						accordionItem.classList.remove("active");
