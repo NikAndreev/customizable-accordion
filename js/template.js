@@ -11,28 +11,25 @@ document.addEventListener("DOMContentLoaded", function(){
 		accordionItemFirst.classList.add("active");
 
 		accordionItemGroup.forEach( accordionItem => {
-			switchItemBody(accordionItem);
+			switchItemBody.apply(accordionItem);
 		});
 
 		accordionHeaderGroup.forEach( accordionHeader => {
 			accordionHeader.addEventListener("click", event => {
 
 				accordionItemGroup.forEach( accordionItem => {
-					if (accordionItem.contains(event.currentTarget)) {
-						accordionItem.classList.toggle("active");
-					} else {
-						accordionItem.classList.remove("active");
-					}
+					
+					accordionItem.contains(event.currentTarget) ? accordionItem.classList.toggle("active") : accordionItem.classList.remove("active");
 
-					switchItemBody(accordionItem);
+					switchItemBody.apply(accordionItem);
 				});
 
 			});
 		});
 
-		function switchItemBody(accordionItem) {
-			let accordionBody = accordionItem.querySelector(".js-accordion-body");
-			if (accordionItem.classList.contains("active")) {
+		function switchItemBody() {
+			let accordionBody = this.querySelector(".js-accordion-body");
+			if (this.classList.contains("active")) {
 				accordionBody.style.height = accordionBody.scrollHeight + "px";
 			} else {
 				accordionBody.style.height = "0px";
