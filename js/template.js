@@ -1,17 +1,17 @@
 document.addEventListener('DOMContentLoaded', function(){
 
-	let accordionGroup = document.querySelectorAll('.js-accordion');
+	const accordionGroup = document.querySelectorAll('.accordion');
 
-	accordionGroup.forEach( function(accordion) {
+	accordionGroup.forEach( accordion => {
 
-		let accordionItemGroup = accordion.querySelectorAll('.js-accordion-item');
-		let accordionHeaderGroup = accordion.querySelectorAll('.js-accordion-header');
+		const accordionItemGroup = accordion.querySelectorAll('.accordion__item');
+		const accordionHeaderGroup = accordion.querySelectorAll('.accordion__header');
 
-		let accordionItemFirst = accordionItemGroup[0];
+		const accordionItemFirst = accordionItemGroup[0];
 		accordionItemFirst.classList.add('active');
 
 		accordionItemGroup.forEach( accordionItem => {
-			switchItemBody.apply(accordionItem);
+			switchAccordionItem(accordionItem);
 		});
 
 		accordionHeaderGroup.forEach( accordionHeader => {
@@ -21,15 +21,16 @@ document.addEventListener('DOMContentLoaded', function(){
 					
 					accordionItem.contains(event.currentTarget) ? accordionItem.classList.toggle('active') : accordionItem.classList.remove('active');
 
-					switchItemBody.apply(accordionItem);
+					switchAccordionItem(accordionItem);
 				});
 
 			});
 		});
 
-		function switchItemBody() {
-			let accordionBody = this.querySelector('.js-accordion-body');
-			if (this.classList.contains('active')) {
+		function switchAccordionItem(accordionItem) {
+			const accordionBody = accordionItem.querySelector('.accordion__body');
+
+			if (accordionItem.classList.contains('active')) {
 				accordionBody.style.height = accordionBody.scrollHeight + 'px';
 			} else {
 				accordionBody.style.height = '0px';
