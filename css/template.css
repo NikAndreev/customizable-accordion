@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 body {
 	margin: 0;
 	background: #233243;
@@ -73,8 +77,8 @@ body {
 }
 
 .accordion__body {
+	height: 0;
 	overflow: hidden;
-	transition: height 0.3s ease;
 }
 
 .accordion__body-inner {
@@ -84,4 +88,8 @@ body {
 
 .accordion__item.active .accordion__switch {
 	transform: translateY(-50%) rotate(-45deg);
+}
+
+.accordion__item.active .accordion__body {
+	height: auto;
 }

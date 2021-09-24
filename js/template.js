@@ -10,32 +10,15 @@ document.addEventListener('DOMContentLoaded', function(){
 		const accordionItemFirst = accordionItemGroup[0];
 		accordionItemFirst.classList.add('active');
 
-		accordionItemGroup.forEach( accordionItem => {
-			switchAccordionItem(accordionItem);
-		});
-
 		accordionHeaderGroup.forEach( accordionHeader => {
 			accordionHeader.addEventListener('click', event => {
 
-				accordionItemGroup.forEach( accordionItem => {
-					
+				accordionItemGroup.forEach( accordionItem => {	
 					accordionItem.contains(event.currentTarget) ? accordionItem.classList.toggle('active') : accordionItem.classList.remove('active');
-
-					switchAccordionItem(accordionItem);
 				});
 
 			});
 		});
-
-		function switchAccordionItem(accordionItem) {
-			const accordionBody = accordionItem.querySelector('.accordion__body');
-
-			if (accordionItem.classList.contains('active')) {
-				accordionBody.style.height = accordionBody.scrollHeight + 'px';
-			} else {
-				accordionBody.style.height = '0px';
-			}
-		}
 
 	});
 
