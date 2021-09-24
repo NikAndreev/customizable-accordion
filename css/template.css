@@ -20,6 +20,7 @@ body {
 	font-size: 16px;
 	border-radius: 15px;
 	overflow: hidden;
+	background: #fefefe;
 }
 
 @media (min-width: 768px) {
@@ -79,11 +80,15 @@ body {
 .accordion__body {
 	height: 0;
 	overflow: hidden;
+	opacity: 0;
+	transition: opacity 0.75s;
 }
 
 .accordion__body-inner {
 	padding: 25px;
 	background: #fefefe;
+	transform: translate(0, -15px);
+	transition: transform 0.5s;
 }
 
 .accordion__item.active .accordion__switch {
@@ -92,4 +97,9 @@ body {
 
 .accordion__item.active .accordion__body {
 	height: auto;
+	opacity: 1;
+}
+
+.accordion__item.active .accordion__body-inner {
+	transform: translate(0, 0);
 }
