@@ -5,15 +5,12 @@ document.addEventListener('DOMContentLoaded', function(){
 	accordionGroup.forEach( accordion => {
 
 		const accordionItemGroup = accordion.querySelectorAll('.accordion__item');
-		const accordionItemFirst = accordionItemGroup[0];
-		accordionItemFirst.classList.add('active');
+		accordionItemGroup[0].classList.add('active');
 
 		accordion.addEventListener('click', event => {
-			const target = event.target;
-
-			if (target.closest('.accordion__header')) {
+			if (event.target.closest('.accordion__header')) {
 				accordionItemGroup.forEach( accordionItem => {	
-					accordionItem.contains(target) ? accordionItem.classList.toggle('active') : accordionItem.classList.remove('active');
+					accordionItem.contains(event.target) ? accordionItem.classList.toggle('active') : accordionItem.classList.remove('active');
 				});
 			}
 		});
