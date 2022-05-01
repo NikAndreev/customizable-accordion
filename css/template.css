@@ -50,7 +50,7 @@ body {
 	padding: 0;
 	width: 35px;
 	height: 35px;
-	pointer-events: none;
+	cursor: pointer;
 	position: absolute;
 	right: 20px;
 	top: 50%;
@@ -80,26 +80,14 @@ body {
 .accordion__body {
 	height: 0;
 	overflow: hidden;
-	opacity: 0;
-	transition: opacity 0.75s;
+	transition: height 0.25s;
 }
 
 .accordion__body-inner {
 	padding: 25px;
 	background: #fefefe;
-	transform: translate(0, -15px);
-	transition: transform 0.5s;
 }
 
 .accordion__item.active .accordion__switch {
 	transform: translateY(-50%) rotate(-45deg);
-}
-
-.accordion__item.active .accordion__body {
-	height: auto;
-	opacity: 1;
-}
-
-.accordion__item.active .accordion__body-inner {
-	transform: translate(0, 0);
 }

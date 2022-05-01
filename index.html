@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Easily customizable accordion</title>
+	<title>Customizable accordion</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -12,43 +12,41 @@
 
 <div class="container">
 	
-	<!-- ACCORDION :: START -->
-	<div class="accordion">
-		<div class="accordion__item">
-			<div class="accordion__header">
+	<div class="accordion" data-accordion>
+		<div class="accordion__item active" data-item>
+			<div class="accordion__header" data-control>
 				Header 1
 				<button class="accordion__switch"></button>
 			</div>
-			<div class="accordion__body">
-				<div class="accordion__body-inner">
+			<div class="accordion__body" data-container>
+				<div class="accordion__body-inner" data-content>
 					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti, sequi velit dignissimos ea corrupti, quas quos, doloribus unde voluptas laborum eos. Tenetur reiciendis exercitationem numquam, suscipit, ipsa quia modi, expedita minus autem sed voluptate, at dolore repudiandae iusto officiis. 
 				</div>
 			</div>
 		</div>
-		<div class="accordion__item">
-			<div class="accordion__header">
+		<div class="accordion__item" data-item>
+			<div class="accordion__header" data-control>
 				Header 2
 				<button class="accordion__switch"></button>
 			</div>
-			<div class="accordion__body">
-				<div class="accordion__body-inner">
+			<div class="accordion__body" data-container>
+				<div class="accordion__body-inner" data-content>
 					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti, sequi velit dignissimos ea corrupti, quas quos, doloribus unde voluptas laborum eos. Tenetur reiciendis exercitationem numquam, suscipit, ipsa quia modi, expedita minus autem sed voluptate, at dolore repudiandae iusto officiis. 
 				</div>
 			</div>
 		</div>
-		<div class="accordion__item">
-			<div class="accordion__header">
+		<div class="accordion__item" data-item>
+			<div class="accordion__header" data-control>
 				Header 3
 				<button class="accordion__switch"></button>
 			</div>
-			<div class="accordion__body">
-				<div class="accordion__body-inner">
+			<div class="accordion__body" data-container>
+				<div class="accordion__body-inner" data-content>
 					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti, sequi velit dignissimos ea corrupti, quas quos, doloribus unde voluptas laborum eos. Tenetur reiciendis exercitationem numquam, suscipit, ipsa quia modi, expedita minus autem sed voluptate, at dolore repudiandae iusto officiis. 
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- ACCORDION :: END -->
 
 </div>
 
