@@ -4,40 +4,38 @@ document.addEventListener('DOMContentLoaded', function(){
 		constructor(accordion, config) {
 			this._accordionEl = accordion
 			this._itemsEl = this._accordionEl.querySelectorAll(config.item)
-			this._control = config.control
+			this._controlsEl =  this._accordionEl.querySelectorAll(config.control)
 			this._container = config.container
 			this._content = config.content
 			this._activeClass = config.activeClass
-			this._mode = config.mode
-			this._animation = config.animation
 
-			this._animate = this._animate.bind(this)
-
-			this._accordionEl.addEventListener('click', event => {
-				if (event.target.closest(this._control)) {
-					switch (this._mode) {
-						case 'collapsible':
-							this._collapsible(event)
-							break
-						case 'multiple':
-							this._multiple(event)
-							break
-						default:
-							this._default(event)
-					}
-
-					if (this._animation) {
-						this._animate()
-					}
-				}
-			})
-			
-			if (this._animation) {
-				this._animate()
-
-				window.addEventListener('resize', this._animate)
+			switch (config.mode) {
+				case 'collapsible':
+					this._modeHandler = this._collapsible
+					break
+				case 'multiple':
+					this._modeHandler = this._multiple
+					break
+				default:
+					this._modeHandler = this._default
 			}
 
+			this._modeHandler = this._modeHandler.bind(this)
+			
+			if (config.animation) {
+				this._animate = this._animate.bind(this)
+				this._animate()
+				window.addEventListener('resize', this._animate)
+
+				this._handler = e => {
+					this._modeHandler(e)
+					this._animate()
+				}
+			} else {
+				this._handler = this._modeHandler
+			}
+
+			this._controlsEl.forEach(el => el.addEventListener('click', this._handler))
 		}
 
 		_collapsible(event) {
