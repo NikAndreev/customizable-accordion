@@ -5,11 +5,21 @@ document.addEventListener('DOMContentLoaded', function(){
 			this._accordionEl = accordion
 			this._itemsEl = this._accordionEl.querySelectorAll(config.item)
 			this._controlsEl =  this._accordionEl.querySelectorAll(config.control)
-			this._container = config.container
-			this._content = config.content
+			this._containerSelector = config.container
+			this._contentSelector = config.content
 			this._activeClass = config.activeClass
 
-			switch (config.mode) {
+			this._setModeHandler(config.mode)
+
+			this._setAnimationObserver(config.animation)
+
+			this._setHandler(config.animation)
+
+			this._setControlsClickHandler()
+		}
+
+		_setModeHandler(mode) {
+			switch (mode) {
 				case 'collapsible':
 					this._modeHandler = this._collapsible
 					break
@@ -19,14 +29,17 @@ document.addEventListener('DOMContentLoaded', function(){
 				default:
 					this._modeHandler = this._default
 			}
+		}
 
-			this._modeHandler = this._modeHandler.bind(this)
-			
-			if (config.animation) {
-				this._animate = this._animate.bind(this)
+		_setAnimationObserver(animation) {
+			if (animation) {
 				this._animate()
-				window.addEventListener('resize', this._animate)
+				window.addEventListener('resize', () => this._animate())
+			}
+		}
 
+		_setHandler(animation) {
+			if (animation) {
 				this._handler = e => {
 					this._modeHandler(e)
 					this._animate()
@@ -34,8 +47,10 @@ document.addEventListener('DOMContentLoaded', function(){
 			} else {
 				this._handler = this._modeHandler
 			}
+		}
 
-			this._controlsEl.forEach(el => el.addEventListener('click', this._handler))
+		_setControlsClickHandler() {
+			this._controlsEl.forEach(el => el.addEventListener('click', e => this._handler(e)))
 		}
 
 		_collapsible(event) {
@@ -58,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 		_animate() {
 			this._itemsEl.forEach(item => {
-				item.querySelector(this._container).style.height = item.classList.contains(this._activeClass) ? item.querySelector(this._content).scrollHeight + 'px' : ''
+				item.querySelector(this._containerSelector).style.height = item.classList.contains(this._activeClass) ? item.querySelector(this._contentSelector).scrollHeight + 'px' : ''
 			})
 		}
 	}
