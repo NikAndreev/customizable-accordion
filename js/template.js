@@ -11,7 +11,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
 			this._setModeHandler(config.mode)
 
-			this._setAnimationObserver(config.animation)
+			if (config.animation) {
+				this._setAnimationObserver()
+			}
 
 			this._setHandler(config.animation)
 
@@ -31,11 +33,9 @@ document.addEventListener('DOMContentLoaded', function(){
 			}
 		}
 
-		_setAnimationObserver(animation) {
-			if (animation) {
-				this._animate()
-				window.addEventListener('resize', () => this._animate())
-			}
+		_setAnimationObserver() {
+			this._animate()
+			window.addEventListener('resize', () => this._animate())
 		}
 
 		_setHandler(animation) {
