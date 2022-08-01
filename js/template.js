@@ -16,36 +16,17 @@ document.addEventListener('DOMContentLoaded', function(){
 			
 			this._setModeHandler(config.mode)
 
+			this._handler = this._handler.bind(this)
+			this._setControlsClickHandler()
+
 			if (this._animation) {
 				this._animate = this._animate.bind(this)
 				this._setAnimationObserver()
 			}
 
-			this._handler = this._handler.bind(this)
-			this._setControlsClickHandler()
-
 			if (this._onInit) {
 				this._onInit()
 			}
-		}
-
-		destroy() {
-			this._removeControlsClickHandler()
-			this._removeAnimationObserver()
-			
-			this._accordionEl = null
-			this._itemsEl = null
-			this._controlsEl = null
-			this._containerSelector = null
-			this._contentSelector = null
-			this._activeClass = null
-			this._animation = null
-
-			if (this._onDestroy) {
-				this._onDestroy()
-			}
-
-			this._removeCallbacks()
 		}
 
 		_setCallbacks(config) {
@@ -97,24 +78,15 @@ document.addEventListener('DOMContentLoaded', function(){
 			}
 		}
 
-		_removeAnimationObserver() {
-			window.removeEventListener('resize', this._animate)
-		}
-
-		_setAnimationObserver() {
-			this._animate()
-			window.addEventListener('resize', this._animate)
-		}
-
 		_handler(e) {
 			this._modeHandler(e)
 
-			if (this._onToggle) {
-				this._onToggle()
-			}
-
 			if (this._animation) {
 				this._animate()
+			}
+
+			if (this._onToggle) {
+				this._onToggle()
 			}
 		}
 
@@ -124,6 +96,34 @@ document.addEventListener('DOMContentLoaded', function(){
 
 		_removeControlsClickHandler() {
 			this._controlsEl.forEach(el => el.removeEventListener('click', this._handler))
+		}
+
+		_setAnimationObserver() {
+			this._animate()
+			window.addEventListener('resize', this._animate)
+		}
+
+		_removeAnimationObserver() {
+			window.removeEventListener('resize', this._animate)
+		}
+
+		destroy() {
+			this._removeControlsClickHandler()
+			this._removeAnimationObserver()
+			
+			this._accordionEl = null
+			this._itemsEl = null
+			this._controlsEl = null
+			this._containerSelector = null
+			this._contentSelector = null
+			this._activeClass = null
+			this._animation = null
+
+			if (this._onDestroy) {
+				this._onDestroy()
+			}
+
+			this._removeCallbacks()
 		}
 
 		_collapsible(event) {
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		content: '[data-content]',
 		activeClass: 'active',
 		mode: 'collapsible',
-		animation: true,
+		animation: false,
 		on: {
 			init: function () {
 				console.log('Accordion initialized');
